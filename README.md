@@ -18,7 +18,7 @@ python classic_hopfield.py
 
 with output:
 
-![Classic Hopfield Example](/classic_hopfield.png | width=256)
+<img src="/classic_hopfield.png" width="512">
 
 ## Modern Hopfield Network
 
@@ -30,7 +30,7 @@ python modern_hopfield.py
 
 with output:
 
-![Modern Hopfield Example](/modern_hopfield.png | width=256)
+<img src="/modern_hopfield.png" width="512">
 
 ## Modern Hopfield Network with Continuous States
 
@@ -42,4 +42,4 @@ python continuous_hopfield.py
 
 with output:
 
-![Continuous Hopfield Example](/continuous_hopfield.png | width=256)
+<img src="/continuous_hopfield.png" width="512">
