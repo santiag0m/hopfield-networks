@@ -1,6 +1,6 @@
 # Hopfield Networks
 
-This repository contains simple implementations of the family of Hopfield Networks discussed in the paper ["Hopfield Networks is All You Need"](https://arxiv.org/abs/2008.02217), and its associated [blog post](https://ml-jku.github.io/hopfield-layers/).
+This repository contains simple implementations of the family of Hopfield Networks discussed in the paper ["Hopfield Networks is All You Need"](https://arxiv.org/abs/2008.02217) and its associated [blog post](https://ml-jku.github.io/hopfield-layers/).
 
 ## Installation
 
