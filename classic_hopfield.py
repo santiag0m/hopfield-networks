@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from datasets import load_mnist_patterns
+from visualization import visualize_hopfield_network
 
 
 class ClassicHopfield:
@@ -27,7 +28,9 @@ class ClassicHopfield:
         return -0.5 * state @ self.weights @ state + state @ self.threshholds
 
 
-def plot_classic_example(n_patterns: int = 10) -> tuple[plt.Figure, plt.Axes]:
+def plot_classic_example(
+    n_patterns: int = 10, output_path: Optional[str] = None
+) -> tuple[plt.Figure, plt.Axes]:
     # Load some samples from MNIST
     patterns = load_mnist_patterns(n_patterns)
 
@@ -38,34 +41,14 @@ def plot_classic_example(n_patterns: int = 10) -> tuple[plt.Figure, plt.Axes]:
     state = np.random.choice([-1, 1], patterns.shape[1])
 
     plt.ion()
-    f, axs = plt.subplots(1, 2, figsize=(12, 6))
-
-    axs[0].set_title("Current State")
-    axs[1].set_title("Energy")
-    axs[1].set_xlabel("Iterations")
-    axs[1].set_box_aspect(1)
-    axs[1].grid()
-
-    state_img = None
-    energy_line = None
-    energy = [hopfield.energy(state)]
-
-    # Create an animation of the network dynamics
-    for _ in range(10):
-        if state_img is not None:
-            state_img.remove()
-        if energy_line is not None:
-            energy_line.remove()
-        state_img = axs[0].imshow(state.reshape(28, 28), animated=True)
-        state = hopfield(state)
-        energy.append(hopfield.energy(state))
-        (energy_line,) = axs[1].plot(energy, color="blue")
-
-        plt.pause(1)
-
+    f, axs = visualize_hopfield_network(
+        hopfield_network=hopfield,
+        energy_function=hopfield.energy,
+        initial_state=state,
+        output_path=output_path,
+    )
     return f, axs
 
 
 if __name__ == "__main__":
-    f, axs = plot_classic_example(n_patterns=2)
-    f.savefig("classic_hopfield.png")
+    f, axs = plot_classic_example(n_patterns=2, output_path="classic_hopfield.gif")
