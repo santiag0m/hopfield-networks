@@ -16,9 +16,7 @@ class ClassicHopfield:
         self.weights = self._calculate_weights()
 
     def _calculate_weights(self) -> np.ndarray:
-        weights = np.zeros((self.patterns.shape[1], self.patterns.shape[1]))
-        for pattern in self.patterns:
-            weights += np.outer(pattern - self.threshholds, pattern - self.threshholds)
+        weights = self.patterns.T @ self.patterns  # (F x N) @ (N x F) = F x F
         np.fill_diagonal(weights, 0)
         return weights
 
